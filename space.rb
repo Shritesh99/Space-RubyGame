@@ -4,6 +4,8 @@ require './star'
 require './z_order'
 
 class  Tutorial < Gosu::Window
+  attr_accessor :stars
+
   def initialize
     super 640, 480
     self.caption = "My Space Game"
@@ -28,6 +30,7 @@ class  Tutorial < Gosu::Window
     if Gosu.button_down? Gosu::KB_UP or Gosu::button_down? Gosu::GP_BUTTON_0
       @player.accelerate
     end
+
     @player.move
     @player.collect_stars(@stars)
 
@@ -41,6 +44,7 @@ class  Tutorial < Gosu::Window
     @background_image.draw(0,0,ZOrder::BACKGROUND)
     @player.draw
     @stars.each { |star| star.draw }
+    @font.draw("Score: #{@player.score}", 10, 10, ZOrder::UI, 1.0, 1.0, Gosu::Color::CYAN)
   end
   def button_down(id)
     if id == Gosu::KB_ESCAPE
