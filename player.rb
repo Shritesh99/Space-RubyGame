@@ -42,6 +42,7 @@ class Player
   end
 
   def collect_stars(stars)
+
     stars.reject! do |star|
       Gosu.distance(@x, @y, star.x, star.y) < 35
       if Gosu.distance(@x, @y, star.x, star.y) < 35
